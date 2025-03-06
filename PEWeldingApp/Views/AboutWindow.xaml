@@ -1,0 +1,101 @@
+﻿<Window x:Class="PEWeldingApp.Views.AboutWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PEWeldingApp.Views"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="О программе Сварка геомембраны" Height="450" Width="800"
+        AllowsTransparency="True" WindowStartupLocation="CenterOwner"
+        WindowStyle="None" Background="Transparent"
+        Style="{DynamicResource MaterialDesignWindow}">
+    <Window.Resources>
+        <Style TargetType="{x:Type TreeViewItem}" x:Key="HeaderStyle">
+            <Setter Property="HeaderTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal" Margin="5">
+                            <materialDesign:PackIcon Kind="BookOpen"/>
+                            <TextBlock Text="{Binding}" Margin="5 0 0 0"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="{x:Type TreeViewItem}" x:Key="ItemsHeaderStyle">
+            <Setter Property="HeaderTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal" Margin="5">
+                            <materialDesign:PackIcon Kind="QuestionMark"/>
+                            <TextBlock Text="{Binding}" Margin="5 0 0 0"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <materialDesign:Card BorderThickness="1" BorderBrush="#FF27292B" UniformCornerRadius="20" Background="Transparent">
+            <Grid Background="White">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="8*"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+                <Grid>
+                    <StackPanel Orientation="Horizontal" Background="#979392" MouseDown="Window_MouseDown">
+                        <materialDesign:PackIcon Kind="BookOutline" Margin="20 10 0 0" Padding="5 0 0 0" Width="20" Height="20"/>
+                        <TextBlock Text="Справка" Style="{DynamicResource MaterialDesignBody1TextBlock}" Margin="5 5 0 0" Padding="10 5 0 0"/>
+                        <TextBlock x:Name="OrgText" Style="{DynamicResource MaterialDesignBody1TextBlock}" Margin="5" Padding="5"/>
+                    </StackPanel>
+                    <Button Width="25" Height="25" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0 10 10 10" 
+                        Style="{DynamicResource MaterialDesignIconButton}" Cursor="Hand" Foreground="#FF27292B" Click="CloseApp">
+                        <materialDesign:PackIcon Kind="CloseThick"/>
+                    </Button>
+                    <Button Width="25" Height="25" HorizontalAlignment="Right" VerticalAlignment="Top" 
+                        Margin="0 10 40 10" Style="{DynamicResource MaterialDesignIconButton}" Cursor="Hand" Click="MinimizeMaximizeApp" 
+                        Foreground="#FF27292B">
+                        <materialDesign:PackIcon x:Name="MinMaxIcon" Kind="WindowMaximize"/>
+                    </Button>
+                    <Button Width="25" Height="25" HorizontalAlignment="Right" VerticalAlignment="Top" 
+                        Margin="0 10 70 10" Style="{DynamicResource MaterialDesignIconButton}" Cursor="Hand" Click="MinimizeApp" Foreground="#FF27292B">
+                        <materialDesign:PackIcon Kind="WindowMinimize"/>
+                    </Button>
+                </Grid>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="2.5*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0">
+                        <StackPanel>
+                            <TreeView Grid.Row="0" x:Name="AboutTV" ItemsSource="{Binding }" Style="{DynamicResource MaterialDesignTreeView}" SelectedItemChanged="AboutTV_SelectedItemChanged">
+                                <TreeViewItem Header="Введение" Style="{DynamicResource HeaderStyle}" IsExpanded="True">
+                                    <TreeViewItem Header="О программе" Style="{DynamicResource ItemsHeaderStyle}"/>
+                                    <TreeViewItem Header="Системные требования" Style="{DynamicResource ItemsHeaderStyle}"/>
+                                    <TreeViewItem Header="Об организации" Style="{DynamicResource ItemsHeaderStyle}"/>
+                                </TreeViewItem>
+                                <TreeViewItem Header="Структура программы" Style="{DynamicResource HeaderStyle}" IsExpanded="True">
+                                    <TreeViewItem Header="Предприятия" Style="{DynamicResource ItemsHeaderStyle}"/>
+                                    <TreeViewItem Header="Источники выбросов" Style="{DynamicResource ItemsHeaderStyle}"/>
+                                    <TreeViewItem Header="Расчетная форма" Style="{DynamicResource ItemsHeaderStyle}"/>
+                                    <TreeViewItem Header="Справочник веществ" Style="{DynamicResource ItemsHeaderStyle}"/>
+                                    <TreeViewItem Header="Настройки расчета" Style="{DynamicResource ItemsHeaderStyle}"/>
+                                    <TreeViewItem Header="Настройки приложения" Style="{DynamicResource ItemsHeaderStyle}"/>
+                                </TreeViewItem>
+                            </TreeView>
+                        </StackPanel>
+                    </Grid>
+                    <Grid Grid.Column="1">
+                        <StackPanel>
+                            <TextBlock Grid.Row="0" Text="{Binding ElementName=AboutTV, Path=SelectedItem.Header}"  Style="{DynamicResource MaterialDesignBody1TextBlock}" x:Name="TextOutside" Background="AliceBlue" Padding="5" Margin="5"/>
+                            <TextBlock Margin="5" Padding="10" Style="{DynamicResource MaterialDesignBody2TextBlock}" TextWrapping="Wrap" TextAlignment="Justify" Background="AntiqueWhite" x:Name="TextInside"/>
+                        </StackPanel>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </materialDesign:Card>
+    </Grid>
+</Window>

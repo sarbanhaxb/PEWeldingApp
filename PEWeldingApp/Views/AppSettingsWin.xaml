@@ -1,0 +1,177 @@
+﻿<Window x:Class="PEWeldingApp.Views.AppSettingsWin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PEWeldingApp.Views"
+        mc:Ignorable="d"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Title="Настройки приложения" Height="300" Width="700"
+        AllowsTransparency="True" WindowStartupLocation="CenterOwner"
+        WindowStyle="None" Background="Transparent"
+        Style="{DynamicResource MaterialDesignWindow}"
+    >
+    <Grid>
+        <materialDesign:Card BorderThickness="1" BorderBrush="#FF27292B" UniformCornerRadius="20" Background="Transparent" >
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="8*"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0" Background="#979392" MouseDown="Window_MouseDown">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="Settings" Margin="20 10 0 0" Padding="5 0 0 0" Width="20" Height="20"/>
+                        <TextBlock Text="Настройки приложения" Style="{DynamicResource MaterialDesignBody1TextBlock}" Margin="5 5 50 0" Padding="10 5 0 0"/>
+                    </StackPanel>
+                    <Button Width="25" Height="25" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0 10 10 10" 
+                    Style="{DynamicResource MaterialDesignIconButton}" Cursor="Hand" Foreground="#FF27292B" Click="CloseApp">
+                        <materialDesign:PackIcon Kind="CloseThick"/>
+                    </Button>
+                    <Button Width="25" Height="25" HorizontalAlignment="Right" VerticalAlignment="Top" 
+                    Margin="0 10 40 10" Style="{DynamicResource MaterialDesignIconButton}" Cursor="Hand" Click="MinimizeApp" Foreground="#FF27292B">
+                        <materialDesign:PackIcon Kind="WindowMinimize"/>
+                    </Button>
+                </Grid>
+                <Grid Grid.Row="1" Background="White">
+                    <TabControl Style="{DynamicResource MaterialDesignNavigationRailTabControl}" materialDesign:ColorZoneAssist.Foreground="Black"
+                            Background="#979392" BorderThickness="1" BorderBrush="#FF27292B" Cursor=""
+                            Padding="5" Foreground="Black">
+                        <TabItem Header="Точность" Width="280" Foreground="Black" Height="50" Style="{DynamicResource MaterialDesignTabItem}">
+                            <Grid Background="#FFE5E5E5">
+                                <StackPanel Orientation="Vertical">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="Максимально-разовый выброс" 
+                                               TextAlignment="Left" 
+                                               VerticalAlignment="Center"
+                                               Margin="5"
+                                               Padding="5"
+                                               Width="310"
+                                               />
+                                        <ComboBox Text="{Binding AppSetting.RoundCoefmr}"
+                                             Margin="5"
+                                             Width="50"
+                                             HorizontalContentAlignment="Center"
+                                             Padding="5"
+                                             >
+                                            <ComboBoxItem Content="5"/>
+                                            <ComboBoxItem Content="6"/>
+                                            <ComboBoxItem Content="7"/>
+                                            <ComboBoxItem Content="8"/>
+                                            <ComboBoxItem Content="9"/>
+                                            <ComboBoxItem Content="10"/>
+                                        </ComboBox>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="Валовый выброс" 
+                                               TextAlignment="Left" 
+                                               VerticalAlignment="Center"
+                                               Margin="5"
+                                               Width="310"
+                                               Padding="5"
+                                               />
+                                        <ComboBox Text="{Binding AppSetting.RoundCoefval}"
+                                             Margin="5"
+                                             Width="50"
+                                             HorizontalContentAlignment="Center"
+                                             Padding="5">
+                                            <ComboBoxItem Content="5"/>
+                                            <ComboBoxItem Content="6"/>
+                                            <ComboBoxItem Content="7"/>
+                                            <ComboBoxItem Content="8"/>
+                                            <ComboBoxItem Content="9"/>
+                                            <ComboBoxItem Content="10"/>
+                                        </ComboBox>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Grid>
+                        </TabItem>
+                        <TabItem Header="Настройки печати" Padding="5" Width="280" Height="50" Style="{DynamicResource MaterialDesignTabItem}">
+                            <Grid Background="#FFE5E5E5">
+                                <StackPanel Orientation="Vertical">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="Размер шрифта" 
+                                               TextAlignment="Left" 
+                                               VerticalAlignment="Center" 
+                                               Margin="5" 
+                                               Padding="5"
+                                               Width="310"
+                                               />
+                                        <ComboBox Text="{Binding AppSetting.FontSize}" 
+                                             Width="50" 
+                                             Margin="5" 
+                                             Padding="5"
+                                             HorizontalContentAlignment="Center"
+                                             >
+                                            <ComboBoxItem Content="8"/>
+                                            <ComboBoxItem Content="9"/>
+                                            <ComboBoxItem Content="10"/>
+                                            <ComboBoxItem Content="11"/>
+                                            <ComboBoxItem Content="12"/>
+                                            <ComboBoxItem Content="13"/>
+                                            <ComboBoxItem Content="14"/>
+                                        </ComboBox>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="Шрифт" 
+                                               TextAlignment="Left" 
+                                               VerticalAlignment="Center" 
+                                               Margin="5" 
+                                               Padding="5"
+                                               Width="210"
+                                               />
+                                        <ComboBox Text="{Binding AppSetting.FontFamily}"
+                                             Width="150" 
+                                             Margin="5" 
+                                             Padding="5"
+                                             HorizontalContentAlignment="Right"
+                                             >
+                                            <ComboBoxItem Content="Arial"/>
+                                            <ComboBoxItem Content="Times New Romans"/>
+                                            <ComboBoxItem Content="Calibri"/>
+                                        </ComboBox>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Grid>
+                        </TabItem>
+                        <TabItem Header="Выбор рабочей базы" Padding="5" Width="280" Height="50" Style="{DynamicResource MaterialDesignTabItem}">
+                            <Grid Background="#FFE5E5E5">
+                                <StackPanel Orientation="Vertical">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="Выбор рабочего каталога" 
+                                               TextAlignment="Left" 
+                                               VerticalAlignment="Center" 
+                                               Margin="5" 
+                                               Padding="5"
+                                               Width="310"
+                                               />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBox Text="{Binding AppSetting.PathToDataBase}"
+                                             Width="300" 
+                                             Margin="10 5 5 5" 
+                                             Padding="5"
+                                             HorizontalContentAlignment="Center"
+                                             x:Name="PathTB"
+                                             />
+                                        <Button Style="{DynamicResource MaterialDesignIconForegroundButton}" Command="{Binding OpenDB}" CommandParameter="{Binding ElementName=PathTB}" Width="30" Height="30" ToolTip="Выбрать рабочий каталог" >
+                                            <materialDesign:PackIcon Kind="DatabaseEdit"/>
+                                        </Button>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Grid>
+                        </TabItem>
+                    </TabControl>
+                </Grid>
+                <Grid Grid.Row="2" Background="#979392">
+                </Grid>
+                <Button Style="{DynamicResource MaterialDesignIconButton}" Width="50" Height="50" Grid.Row="1"
+                        ToolTip="Сохранить изменения" Margin="0 0 10 10" 
+                        VerticalAlignment="Bottom" HorizontalAlignment="Right"
+                    Command="{Binding SaveChanges}">
+                    <materialDesign:PackIcon Kind="ContentSaveOutline" Foreground="#FF27292B" Width="40" Height="40"/>
+                </Button>
+            </Grid>
+        </materialDesign:Card>
+    </Grid>
+</Window>
